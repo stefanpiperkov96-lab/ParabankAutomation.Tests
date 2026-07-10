@@ -100,7 +100,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\LoanTests.cs" />
+    <Compile Include="Tests\OpenPageTests.cs" />
+    <Compile Include="Tests\RegisterTests.cs" />
+    <Compile Include="Workflows\ParaBankWorkflow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
