@@ -41,6 +41,39 @@ namespace ParabankAutomation.Tests.Workflows
             StringAssert.Contains(Find(By.CssSelector("#rightPanel h1")).Text, "Signing up is easy!");
         }
 
+        public void RegisterUser(
+            string firstName,
+            string lastName,
+            string address,
+            string city,
+            string state,
+            string zipCode,
+            string phoneNumber,
+            string ssn,
+            string username,
+            string password)
+        {
+            Type(By.Id("customer.firstName"), firstName);
+            Type(By.Id("customer.lastName"), lastName);
+            Type(By.Id("customer.address.street"), address);
+            Type(By.Id("customer.address.city"), city);
+            Type(By.Id("customer.address.state"), state);
+            Type(By.Id("customer.address.zipCode"), zipCode);
+            Type(By.Id("customer.phoneNumber"), phoneNumber);
+            Type(By.Id("customer.ssn"), ssn);
+            Type(By.Id("customer.username"), username);
+            Type(By.Id("customer.password"), password);
+            Type(By.Id("repeatedPassword"), password);
+            Click(By.CssSelector("input[value='Register']"));
+            WaitUntilVisible(By.CssSelector("#rightPanel h1"));
+        }
+
+        public void VerifyRegistrationSucceeded(string username)
+        {
+            StringAssert.Contains(Find(By.CssSelector("#rightPanel h1")).Text, "Welcome " + username);
+            StringAssert.Contains(Find(By.Id("rightPanel")).Text, "Your account was created successfully.");
+        }
+
         public void Login(string username, string password)
         {
             Type(By.Name("username"), username);
