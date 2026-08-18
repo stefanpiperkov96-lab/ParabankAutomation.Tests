@@ -87,6 +87,18 @@ namespace ParabankAutomation.Tests.Workflows
             WaitUntilVisible(By.Id("requestLoanForm"));
         }
 
+        public void ApplyForLoan(string loanAmount, string downPayment, string fromAccountId)
+        {
+            Type(By.Id("amount"), loanAmount);
+            Type(By.Id("downPayment"), downPayment);
+
+            SelectElement accountDropdown = new SelectElement(WaitUntilVisible(By.Id("fromAccountId")));
+            accountDropdown.SelectByValue(fromAccountId);
+
+            Click(By.CssSelector("input[value='Apply Now']"));
+            WaitUntilVisible(By.Id("loanStatus"));
+        }
+
         private void Click(By locator)
         {
             WaitUntilVisible(locator).Click();
